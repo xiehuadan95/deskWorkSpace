@@ -1,0 +1,48 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.jt.system.dao.SysUserDao">
+        <update id="updateUser" parameterType="com.cy.jt.system.domain.SysUser">
+            update sys_users
+            set username=#{username},
+                deptId=#{deptId},
+                mobile=#{mobile},
+                email=#{email},
+                modifiedTime=now(),
+                modifiedUser=#{modifiedUser}
+            where id=#{id}
+        </update>
+
+
+        <select id="selectById" resultType="com.cy.jt.system.domain.SysUser">
+            select u.*,d.name deptName
+            from sys_users u left join sys_depts d
+                                       on u.deptId=d.id
+            where u.id=#{id}
+        </select>
+
+
+        <insert id="insertUser" parameterType="com.cy.jt.system.domain.SysUser"
+                keyProperty="id" useGeneratedKeys="true" >
+            insert into sys_users
+            (username,password,salt,mobile,email,deptId,valid,
+             createdTime,modifiedTime,createdUser,modifiedUser)
+            values
+            (#{username},#{password},#{salt},#{mobile},#{email},
+             #{deptId},#{valid}, now(),now(),#{createdUser},#{modifiedUser})
+        </insert>
+
+
+        <select id="selectUsers" resultType="com.cy.jt.system.domain.SysUser">
+            select u.*,d.name deptName
+            from sys_users u left join sys_depts d
+            on u.deptId=d.id
+            <where>
+                <if test="username!=null and username!=''">
+                    u.username like concat ("%",#{username},"%")
+                </if>
+            </where>
+            order by u.createdTime desc
+        </select>
+
+</mapper>

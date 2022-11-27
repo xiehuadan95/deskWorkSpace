@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace 绑定也给对象的DAO/MAPPER接口-->
+<mapper namespace="com.xie.dao.UserMapper">
+    <!--查询 id为重写的方法的名字 namespace中的方法名  resultType是sql结果类型 返回值
+    parameterType 参数类型
+    -->
+    <select id="getUserList" resultType="com.xie.pojo.User">
+        select *
+        from mybatis.user
+    </select>
+    <select id="getUserLike" resultType="com.xie.pojo.User">
+        select * from user where name like "%"#{value}"%"
+    </select>
+    <select id="getUserById" parameterType="int" resultType="com.xie.pojo.User">
+        select *
+        from mybatis.user
+        where id = #{id}
+    </select>
+    <select id="getUserById2" parameterType="map" resultType="com.xie.pojo.User">
+        select * from user where id=#{helloid} and name=#{name2}
+    </select>
+    <!--对象中的属性 可以直接取出来-->
+    <insert id="addUser" parameterType="com.xie.pojo.User">
+        insert into mybatis.user(id, name, pwd)
+        values (#{id}, #{name}, #{pwd});
+    </insert>
+    <!--传递的是map的键-->
+    <insert id="addUser2" parameterType="map">
+        insert into mybatis.user (id, name, pwd)
+        values (#{userid}, #{userName}, #{passWord})
+    </insert>
+    <update id="updateUser" parameterType="com.xie.pojo.User">
+        update mybatis.user
+        set name = #{name},
+            pwd=#{pwd}
+        where id = #{id};
+    </update>
+    <delete id="deleteUser" parameterType="int">
+        delete
+        from mybatis.user
+        where id = #{id};
+    </delete>
+</mapper>

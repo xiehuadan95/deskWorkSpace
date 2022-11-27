@@ -1,0 +1,29 @@
+
+#\u57FA\u4E8E\u5185\u5B58\u7684\u65B9\u5F0F\u8FDB\u884C\u6307\u5B9A \u8BFB\u914D\u7F6E\u6587\u4EF6\u52A0\u8F7D\u5230\u5185\u5B58\u4E2D
+#spring.security.user.name=eric
+#spring.security.user.password=123456
+#\u6570\u636E\u6E90\u7684\u914D\u7F6E
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/practice?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+    hikari:
+      minimum-idle: 5
+      idle-timeout: 600000
+      maximum-pool-size: 10
+      auto-commit: true
+      pool-name: MyHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+#      会话超时 tomcat 默认至少60s
+server:
+  servlet:
+    session:
+      timeout: 60s
+  port: 8080
+
+

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--核心配置文件，从官方文档复制来的-->
+<mapper namespace="com.xie.dao.TeacherMapper">
+
+</mapper>

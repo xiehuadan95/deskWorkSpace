@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 是mybatis框架用来写SQL语句的文件,namespace用来作为文件的唯一标识-->
+<mapper namespace="m1">
+<!--    resultType属性用来完成ORM映射,把查到的结果和指定类里的属性映射值-->
+    <select id="get" resultType="com.study.pojo.User" >
+        select * from user
+    </select>
+</mapper>

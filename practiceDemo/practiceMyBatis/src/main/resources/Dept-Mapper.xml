@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 是mybatis框架用来写SQL语句的文件,namespace用来作为文件的唯一标识-->
+<mapper namespace="d1">
+    <select id="sel" resultType="com.study.pojo.Dept">
+        select * from dept
+    </select>
+</mapper>

@@ -1,0 +1,16 @@
+{
+  "name": "jt-ui",
+  "version": "1.0.0",
+  "main": "login.html",
+  "dependencies": {},
+  "scripts": {
+    "dev": "lite-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "qilei",
+  "license": "ISC",
+  "description": "jt-cloud",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}

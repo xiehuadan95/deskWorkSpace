@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/MsaDemo.iml" filepath="$PROJECT_DIR$/.idea/MsaDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nacos-demo/nacos-demo.iml" filepath="$PROJECT_DIR$/nacos-demo/nacos-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nacos-demo/sca-consumer/sca-consumer.iml" filepath="$PROJECT_DIR$/nacos-demo/sca-consumer/sca-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nacos-demo/sca-provider/sca-provider.iml" filepath="$PROJECT_DIR$/nacos-demo/sca-provider/sca-provider.iml" />
+    </modules>
+  </component>
+</project>

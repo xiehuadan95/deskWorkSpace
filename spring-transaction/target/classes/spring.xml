@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+    <!--扫描包-->
+    <context:component-scan base-package="com.xie"></context:component-scan>
+    <!-- 配置第三方bean druid连接池 配置数据源-->
+    <bean class="com.alibaba.druid.pool.DruidDataSource" id="dataSource">
+        <property name="username" value="${mysql.username}"></property>
+        <property name="password" value="${mysql.password}"></property>
+        <property name="url" value="${mysql.url}"></property>
+        <property name="driverClassName" value="${mysql.driverClassName}"></property>
+    </bean>
+    <!-- 引入外部属性资源文件-->
+    <context:property-placeholder location="db.properties"></context:property-placeholder>
+    <!-- 配置JdbcTemplate Bean组件 用其操作数据库 需要配置数据源-->
+    <bean class="org.springframework.jdbc.core.JdbcTemplate" id="jdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+<!--具名 jdbcTemplate由于没有无参构造函数，这里必须是构造函数的方式注入-->
+    <bean class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate" id="jdbcTemplateNamed">
+        <constructor-arg type="javax.sql.DataSource" ref="dataSource"></constructor-arg>
+    </bean>
+<!-- 事务控制 配置事务管理器的bean 就是针对connection的管理-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+<!-- 将数据源给它 -->
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+<!--基于注解方式的事务，开启事务的注解驱动 将事务管理器交给它-->
+  <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+
+
+</beans>

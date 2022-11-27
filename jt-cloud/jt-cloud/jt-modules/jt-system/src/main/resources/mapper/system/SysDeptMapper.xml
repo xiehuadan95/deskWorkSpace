@@ -1,0 +1,34 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.jt.system.dao.SysDeptDao">
+    <!-- 基于部门id查询部门信息 -->
+    <select id="selectById"
+            resultType="com.cy.jt.system.domain.SysDept">
+        select *
+        from sys_depts
+        where id=#{id}
+    </select>
+
+    <update id="updateDept">
+        update sys_depts
+        set
+            name=#{name},
+            sort=#{sort},
+            remark=#{remark},
+            parentId=#{parentId},
+            modifiedUser=#{modifiedUser},
+            modifiedTime=now()
+        where id=#{id}
+    </update>
+
+    <insert id="insertDept">
+        insert into sys_depts
+        (name,sort,remark,parentId,
+         createdTime,modifiedTime,createdUser,modifiedUser)
+        values
+        (#{name},#{sort},#{remark},#{parentId},
+         now(),now(),#{createdUser},#{modifiedUser})
+    </insert>
+
+</mapper>

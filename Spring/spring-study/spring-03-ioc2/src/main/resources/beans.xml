@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- 下标赋值-->
+<!--    <bean id="user" class="com.xie.pojo.User">-->
+<!--        <constructor-arg index="0" value="有参java"/>-->
+<!--    </bean>-->
+    <!-- 属性赋值-->
+<!--    <bean id="user" class="com.xie.pojo.User">-->
+<!--&lt;!&ndash;基本类型可以直接 type=int 不建议使用 &ndash;&gt;-->
+<!--        <constructor-arg type="java.lang.String" value="rose"/>-->
+<!--    </bean>-->
+
+    <bean id="user" class="com.xie.pojo.User">
+        <!--直接通过参数名来设置-->
+        <constructor-arg name="name" value="tom"/>
+    </bean>
+<!--
+id : bean的唯一标识符 也就是相当于对象名
+class : bean对象所对应的全限定名 包+类型
+name : 也是别名,name可以同时取多个别名 比alias更好
+-->
+    <bean id="userT" class="com.xie.pojo.UserT" name="user2 u2,u3;u3">
+        <property name="name" value="lala"/>
+    </bean>
+    <alias name="user" alias="123"/>
+
+</beans>

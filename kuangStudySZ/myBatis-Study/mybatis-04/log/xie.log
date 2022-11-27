@@ -1,0 +1,3 @@
+[INFO][21-12-28][com.xie.dao.UserDaoTest]info:信息
+[DEBUG][21-12-28][com.xie.dao.UserDaoTest]debug:方式
+[ERROR][21-12-28][com.xie.dao.UserDaoTest]error:错误

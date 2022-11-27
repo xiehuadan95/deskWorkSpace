@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--核心配置文件，从官方文档复制来的-->
+<configuration>
+<!--别名-->
+    <typeAliases>
+        <!--        <typeAlias type="com.xie.pojo.User" alias="User"/>-->
+        <package name="com.xie.pojo"/>
+    </typeAliases>
+<!--设置-->
+
+<!--    <environments default="development">-->
+<!--        <environment id="development">-->
+<!--            <transactionManager type="JDBC"/>-->
+<!--            <dataSource type="POOLED">-->
+<!--                &lt;!&ndash; 驱动&ndash;&gt;-->
+<!--                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>-->
+<!--                &lt;!&ndash; <property name="url" value="${url}"/> url useSSL安全连接我们自己的库 用amp;转译&符号&ndash;&gt;-->
+<!--                <property name="url" value="jdbc:mysql://localhost:3306/mybatis?useSSL=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>-->
+<!--                <property name="username" value="root"/>-->
+<!--                <property name="password" value="root"/>-->
+<!--            </dataSource>-->
+<!--        </environment>-->
+<!--    </environments>-->
+    <!--每一个mapper.xml 都需要在mybatis核心配置文件中注册-->
+<!--    <mappers>-->
+<!--        <mapper resource="com/xie/mapper/UserMapper.xml"/>-->
+
+<!--    </mappers>-->
+</configuration>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatisplus.mapper.UserMapper">
+
+
+    <!-- 可定义resultMap来将数据库的字段和实体类字段进行映射 也可以采用实体类注解的方式进行映射 扩展性更高还可以做 collection association 映射-->
+    <!--    <resultMap id="myUser" type="mybatisplus.entity.User">-->
+    <!--        <id column="uid" property="id"/>-->
+    <!--        <result column="username" property="name"/>-->
+    <!--    </resultMap>-->
+    <!--sql片段 将从数据库查询到的字段 用别名 替换，同实体类的字段对应，可自动映射-->
+    <sql id="Base_Colum_List">
+        uid
+        as id,name,age,email,is_deleted as deleted,create_time as createTime,update_time as updateTime
+    </sql>
+    <select id="selectAllByName" resultType="mybatisplus.entity.User">
+        select
+        <include refid="Base_Colum_List"/>
+        from t_user
+        where name = #{name}
+    </select>
+    <select id="selectPageVo" resultType="mybatisplus.entity.User">
+        select
+        <include refid="Base_Colum_List"/>
+        from t_user where age > #{age}
+    </select>
+</mapper>

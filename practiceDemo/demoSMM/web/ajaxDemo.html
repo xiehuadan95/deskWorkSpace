@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>用户列表展现</title>
+		
+		<!-- 1.导入JS函数类库 -->
+		<script src="jquery-3.6.0.min.js"></script>
+		<!-- 2.编辑JS发起Ajax请求 -->
+		<script>
+			//循环写法
+			/**
+			 * 		//js 实现for循环
+					for(var i=0;i<data.length;i++){
+						var user = data[i]
+						console.log(user)
+					}
+					in关键字  index代表下标
+					for(var index in data){
+						console.log(data[index])
+					}
+					//增强for写法 of 表示直接获取遍历内容
+					for(var user of data){
+						
+						console.log(user)
+					}
+			 */
+			//让页面加载完成之后再次执行  
+			//语法: 函数式编程
+			//将数据以表格的形式展现
+			//种类: 1.$.get()   2.$.post() 3.$.getJSON()  4.$.ajax()
+			//js中可以根据返回值的数据动态匹配类型
+			//$.get("url地址","参数",function(data){},"返回值类型")
+			
+			$(function(){
+				alert("页面加载成功")
+				var name="张三"
+				var age=18
+				//参数写法：key=value&key2=value
+				var args1="name"+name+"&age="+age
+				//参数写法：{key:value,key2:value}
+				var args2={name:name,age:age}
+					var url="http://localhost:8088/getUser"
+					$.get(url,function(data){
+						//增强for写法 of 表示直接获取遍历内容
+						for(var u of data){
+							//将从数据库查询到的内容添加到目前的表格中
+							var name=u.name
+							var age=u.age
+							var id=u.id
+							var sex=u.sex
+							var tr="<tr align='center'><td>"+id+"</td><td>"+name+"</td><td>"+age+"</td><td>"+sex+"</td></tr>"
+					//利用Id选择器定位table标签
+					//append向每个匹配的元素内部追加内容
+					$("#tab").append(tr)
+					
+						}
+						
+					})
+				
+				
+			})
+		
+</script>
+	</head>
+	<body>
+		<table  id="tab"   border="1px" width="700px" align="center">
+			<tr>
+				<td colspan="4" align="center"><h1>表格数据</h1></td>
+			</tr>
+			<tr align="center">
+				<td>ID编号</td>
+				<td>名称</td>
+				<td>年龄</td>
+				<td>性别</td>
+			</tr>
+		</table>
+	</body>
+</html>
+

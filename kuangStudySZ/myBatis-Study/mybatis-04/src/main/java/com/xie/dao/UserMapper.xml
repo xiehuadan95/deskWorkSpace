@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace 绑定也给对象的DAO/MAPPER接口-->
+<mapper namespace="com.xie.dao.UserMapper">
+    <!--查询 id为重写的方法的名字 namespace中的方法名  resultType是sql结果类型 返回值
+    parameterType 参数类型
+    -->
+<!--结果集映射-->
+    <resultMap id="UserMap" type="User">
+<!--colum数据库中的字段  property实体类中的属性-->
+<!--        <result column="id"  property="id"/>-->
+<!--        <result column="name" property="name" />-->
+        <result column="pwd" property="password"/>
+    </resultMap>
+    <select id="getUserById" parameterType="int" resultMap="UserMap">
+        select *
+        from mybatis.user
+        where id = #{id}
+    </select>
+</mapper>

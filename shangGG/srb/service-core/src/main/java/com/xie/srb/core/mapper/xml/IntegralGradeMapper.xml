@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xie.srb.core.mapper.IntegralGradeMapper">
+
+    <select id="selectByMap" parameterType="map" resultMap="abc">
+        select t.id tid,t.integral_end tend,d.name aname from integral_grade t ,dict d
+        where  t.id = d.value
+    </select>
+<resultMap id="abc" type="com.xie.srb.core.pojo.entity.IntegralGradeChild">
+    <result property="id" column="tid"></result>
+    <result property="integralEnd" column="tend"></result>
+    <collection property="dname" ofType="String">
+        <result property="dname" column="aname"></result>
+    </collection>
+</resultMap>
+
+</mapper>

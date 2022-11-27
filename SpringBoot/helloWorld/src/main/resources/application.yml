@@ -1,0 +1,14 @@
+
+#配置文件能写什么？---spring.factories 的联系
+spring:
+  mvc:
+    format:
+      date: dd/MM/yyyy
+    dispatch-options-request: true
+
+#在配置文件中能配置的东西，一定会有  xxxAutoConfiguration 自动装配，默认值为 xxxProperties 文件
+#可以和配置 文件绑定，所以我们就可以使用自定义的配置了
+
+#打印日志，自动配置类已经启动并且已经生效的 和没匹配成功的
+debug: true
+

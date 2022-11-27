@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Ajax说明 </title>
+	</head>
+	
+	<body>
+		
+		<script src="jquery-3.6.0.min.js"></script>
+		<script>
+		 
+		/* $.ajax相关说明 
+		 1.{key:value}  2.type:ajax的请求方式  get/post/put/delete
+		 3.简化 $.get() $.post() $.getJSON()
+		 4.url远程服务器地址 JSONP:JS端解决跨域问题的一种机制，现在几乎淘汰了
+		 5.cache：true 默认值为true 缓存
+		 6.async: true 默认为异步 */
+		 
+		 
+		 $.ajax({
+			 type: "get",
+			 url: "http://localhost:8080/getUser",
+			 <!-- data:{key:value,key2:value2} -->
+			 dataType: "json",
+			 <!-- 异步改为同步 -->
+			 async: "false",  
+			 cache: "false",
+			 success: function(result){
+				 console.log(result)
+			 },
+			 error: function(){
+				 alert("服务器正忙，请稍后！")
+			 }   
+		 })
+		
+		</script>
+		["java编程","country","user",[
+			"jack","rose",{"id":10,"name":true,"subject":null,"score":[
+				78,88,50,60,{
+					"teacher":"梅超风","student":[{"name":"阿呆","age":15},
+					{"name":"tom","age":18},{"name":"jeny","age":15}]
+				}
+			]}
+		]]
+		
+		
+		
+	</body>
+</html>
