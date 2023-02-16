@@ -15,10 +15,10 @@ spring:
 
 # redis放在spring节点下
   redis:
-    host: 192.168.100.100
+    host: 192.168.186.128
     port: 6379
-    database: 0
-    password: 123456
+    database: 1
+#    password: root
     timeout: 3000ms
     lettuce:
       pool:
@@ -33,4 +33,7 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath:com/xie/srb/core/mapper/xml/*.xml
 #设置日志级别
+logging:
+  level:
+    root: DEBUG
 

@@ -23,8 +23,12 @@ import org.springframework.web.multipart.support.MissingServletRequestPartExcept
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 //相当于异常切面  异常处理器
+
+/**
+ * 统一异常处理器
+ */
 @Slf4j
-@RestControllerAdvice
+@RestControllerAdvice  //一旦项目中出现异常 就会跑到这里来 相当于切面
 public class UnifiedExceptionHandler {
     //异常处理方法
     @ExceptionHandler(value =Exception.class)

@@ -1,6 +1,5 @@
 package com.xie.easyexcel.dto;
 
-import com.alibaba.excel.annotation.ExcelProperty;
 import lombok.Data;
 
 import java.util.Date;
@@ -10,7 +9,7 @@ import java.util.Date;
  */
 @Data
 public class ExcelStudentDTO {
-//    @ExcelProperty("姓名")
+//    @ExcelProperty("姓名") excel上面就出现 姓名 生日薪资
     private String name;
 //    @ExcelProperty("生日")
     private Date birthday;

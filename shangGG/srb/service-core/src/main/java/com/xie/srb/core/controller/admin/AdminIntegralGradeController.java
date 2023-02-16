@@ -1,10 +1,10 @@
 package com.xie.srb.core.controller.admin;
 
 
-import com.google.common.base.Joiner;
-import com.xie.common.exception.BusinessException;
+
 import com.xie.common.myselfAssert.Assert;
 import com.xie.common.result.ResponseEnum;
+import com.xie.common.result.Result;
 import com.xie.srb.core.mapper.IntegralGradeMapper;
 import com.xie.srb.core.pojo.entity.IntegralGrade;
 import com.xie.srb.core.pojo.entity.IntegralGradeChild;
@@ -13,17 +13,13 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.xie.common.result.Result;
 
 import javax.annotation.Resource;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 
 /**
@@ -41,6 +37,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @RequestMapping("/admin/core/integralGrade")
 public class AdminIntegralGradeController {
+
     @Resource
     private IntegralGradeService integralGradeService;
 
@@ -49,7 +46,7 @@ public class AdminIntegralGradeController {
     public Result listAll() {
         log.info("this is loginfo");
         log.warn("this is logwarn");
-        log.error("this is logerror");
+//        log.error("this is logerror");
         List<IntegralGrade> list = integralGradeService.list();
         return Result.ok().data("list",list).msg("获取列表成功");
     }

@@ -1,9 +1,8 @@
-package com.guigu;
+package com.xie.srb.core;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
-import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import com.baomidou.mybatisplus.generator.config.PackageConfig;
@@ -11,6 +10,9 @@ import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import org.junit.jupiter.api.Test;
 
+/**
+ * mybatis-plus 代码生成器
+ */
 public class CodeGenerator {
     @Test
     public void genCode(){
@@ -20,7 +22,9 @@ public class CodeGenerator {
 
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
+        //获取当前window的用户 项目获取到的绝对路径  D:\WorkSpace\idea-workspace\shangGG\srb
         String projectPath = System.getProperty("user.dir");
+        //设置代码输出的位置
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor("eric");
        //去掉Service接口的首字母I 不加 接口名字前面会有I %s是占位符 实体名字

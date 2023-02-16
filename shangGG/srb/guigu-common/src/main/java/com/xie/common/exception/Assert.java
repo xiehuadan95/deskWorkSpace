@@ -1,27 +1,26 @@
-package com.xie.common.myselfAssert;
+package com.xie.common.exception;
 
-import com.xie.common.exception.BusinessException;
+
 import com.xie.common.result.ResponseEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 
-/**
- * 自己写的断言
- *
- */
 @Slf4j
-public class Assert {
+public abstract class Assert {
+
     /**
-     * 断言对象不为空 为空则报错抛异常
-     * @param obj
-     * @param responseEnum
+     * 断言对象不为空
+     * 如果对象obj为空，则抛出异常
+     * @param obj 待判断对象
      */
-    public static  void notNull(Object obj,ResponseEnum responseEnum){
-        if(obj==null){
-            log.info("obj is null...........");
+    public static void notNull(Object obj, ResponseEnum responseEnum) {
+        if (obj == null) {
+            log.info("obj is null...............");
             throw new BusinessException(responseEnum);
         }
     }
+
+
     /**
      * 断言对象为空
      * 如果对象obj不为空，则抛出异常
@@ -34,6 +33,7 @@ public class Assert {
             throw new BusinessException(responseEnum);
         }
     }
+
     /**
      * 断言表达式为真
      * 如果不为真，则抛出异常
@@ -46,6 +46,7 @@ public class Assert {
             throw new BusinessException(responseEnum);
         }
     }
+
     /**
      * 断言两个对象不相等
      * 如果相等，则抛出异常
@@ -59,6 +60,7 @@ public class Assert {
             throw new BusinessException(responseEnum);
         }
     }
+
     /**
      * 断言两个对象相等
      * 如果不相等，则抛出异常
@@ -72,6 +74,7 @@ public class Assert {
             throw new BusinessException(responseEnum);
         }
     }
+
     /**
      * 断言参数不为空
      * 如果为空，则抛出异常

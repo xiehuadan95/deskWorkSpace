@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 /**
  * 自定义异常 必须是一个运行时异常
  * 加上无参构造注解 自定义有参构造方法
+ * 1.创建自定义异常类，必须是一个运行时异常  2.抛出这个自定义异常对象 3.统一异常处理类处理
  */
 @Data
 @NoArgsConstructor

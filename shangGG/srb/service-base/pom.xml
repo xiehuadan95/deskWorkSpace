@@ -17,7 +17,7 @@
             <artifactId>guigu-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-<!--        swagger-->
+<!--        swagger 接口自动生成工具-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>

@@ -1,4 +1,4 @@
-package com.guigu;
+package com.xie.srb.core;
 
 
 import org.junit.jupiter.api.Test;
