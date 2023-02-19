@@ -2,6 +2,7 @@ package com.xie.srb.base.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,7 +35,10 @@ public class RedisConfig {
         //这里将类的数据类型存入json 便于反序列化的时候转换为正确的数据类型
         //ObjectMapper专门处理类映射
         ObjectMapper objectMapper = new ObjectMapper();
-        //禁用 dateTime这种类型
+        //把当前序列化的对象的数据类型也存入序列化的结果字符串中
+        objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance,ObjectMapper.DefaultTyping.NON_FINAL);
+
+        //禁用 dateTime这种类型 序列化localDateTime的问题
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         //用fastjson指定的时间序列化方案
         objectMapper.registerModule(new JavaTimeModule());

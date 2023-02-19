@@ -36,4 +36,10 @@ public class RedisTemplateTest {
         redisTemplate.opsForValue().set("dict",dict, 5,TimeUnit.MINUTES);
 
     }
+    //redisTemplate取值测试
+    @Test
+    public void getDict(){
+        Dict dict = (Dict)redisTemplate.opsForValue().get("dict");
+        System.out.println(dict);
+    }
 }

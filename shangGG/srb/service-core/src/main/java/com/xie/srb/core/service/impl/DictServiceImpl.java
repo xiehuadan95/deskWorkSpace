@@ -10,13 +10,18 @@ import com.xie.srb.core.pojo.dto.ExcelDictDTO;
 import com.xie.srb.core.pojo.entity.Dict;
 import com.xie.srb.core.service.DictService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
+import javax.annotation.Resource;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * <p>
@@ -29,6 +34,9 @@ import java.util.List;
 @Slf4j
 @Service
 public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements DictService {
+    @Resource
+    RedisTemplate redisTemplate;
+
     /* @Resource
      private DictMapper dictMapper;
      由于注入的mapper就是当前service的mapper就不用写 直接用baseMapper既可
@@ -55,9 +63,25 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
         });
         return list;
     }
-
+    //查看数据类别  可以在这个方法中加入业务逻辑，
     @Override
     public List<Dict> listByParentId(Long parentId) {
+        //首先查询redis 是否存在数据列表 因为有parentid 而且前端页面都是 列表展示 ，一个父类存一个key
+        //可以提现层次关系  这个parentId 下的列表都存起来
+        try {
+            List<Dict> dictList= (List<Dict>)redisTemplate.opsForValue().get("srb:core:dictList" + parentId);
+            if(null!=dictList){
+                log.info("从redis中获取数据");
+
+                //如果有直接返回
+                return dictList;
+            }
+        } catch (Exception e) {
+            //拿到错误跟踪栈的字符串
+            log.error("redis服务器异常:"+ ExceptionUtils.getStackTrace(e));
+        }
+        //如果不存在则查询数据库
+        log.info("从数据库中获取数据");
         QueryWrapper<Dict> dictQueryWrapper = new QueryWrapper<>();
         dictQueryWrapper.eq("parent_id",parentId);
         List<Dict> dictsList = baseMapper.selectList(dictQueryWrapper);
@@ -66,7 +90,18 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
             //判断当前节点是否有子节点,找到当前对象的下级 有没有子节点
             dict.setHasChildren(ifHasChild(dict.getId()));
         });
+
+        try {
+            //查完数据库 将数据存入redis 设置过期时间 以达到数据同步 存1天
+            log.info("将数据存入redis");
+            redisTemplate.opsForValue().set("srb:core:dictList" + parentId,dictsList,1, TimeUnit.DAYS);
+        } catch (Exception e) {
+            log.error("redis服务器异常:"+ ExceptionUtils.getStackTrace(e));
+        }
+        //返回数据
         return dictsList;
+
+
     }
     /**
      * 判断当前的id所在的节点下是否有子节点
