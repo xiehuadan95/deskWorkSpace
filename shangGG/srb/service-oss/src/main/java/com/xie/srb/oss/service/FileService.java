@@ -16,4 +16,10 @@ public interface FileService {
      * @return
      */
     String upload(InputStream inputStream,String module,String fileName);
+
+    /**
+     *
+     * @param url
+     */
+    void removeFile(String url);
 }

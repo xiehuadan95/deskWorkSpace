@@ -53,4 +53,9 @@ public class FileServiceImpl implements FileService {
 
         return "https://"+OssProperties.BUCKET_NAME+"."+OssProperties.ENDPOINT+"/"+path;
     }
+
+    @Override
+    public void removeFile(String url) {
+        l
+    }
 }

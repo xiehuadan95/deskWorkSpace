@@ -49,5 +49,13 @@ public class FileController {
         }
     }
 
+    @ApiOperation("oss删除文件")
+    @DeleteMapping("/remove")
+    public Result remove(@ApiParam(value = "要删除的文件",required = true)
+                             @RequestParam("url") String url){
+                fileService.removeFile(url);
+        return Result.ok().msg("删除成功");
+    }
+
 
 }
