@@ -2,6 +2,9 @@ package com.xie.srb.core.service;
 
 import com.xie.srb.core.pojo.entity.UserInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.xie.srb.core.pojo.vo.LoginVO;
+import com.xie.srb.core.pojo.vo.RegisterVO;
+import com.xie.srb.core.pojo.vo.UserInfoVO;
 
 /**
  * <p>
@@ -13,4 +16,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface UserInfoService extends IService<UserInfo> {
 
+    void register(RegisterVO registerVO);
+
+    UserInfoVO login(LoginVO loginVO, String ip);
 }

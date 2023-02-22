@@ -40,6 +40,9 @@ public class AdminIntegralGradeController {
 
     @Resource
     private IntegralGradeService integralGradeService;
+    @Autowired
+    IntegralGradeMapper integralGradeMapper;
+
 
     @ApiOperation("积分等级列表")
     @GetMapping("/list")
@@ -111,8 +114,7 @@ public class AdminIntegralGradeController {
         }
 
     }
-    @Autowired
-    IntegralGradeMapper integralGradeMapper;
+
 
     @GetMapping("/select")
     public void select(){

@@ -1,12 +1,11 @@
 package com.xie.srb.sms.web.api;
 
-import com.xie.common.exception.Assert;
+import com.xie.common.myselfAssert.Assert;
 import com.xie.common.result.ResponseEnum;
 import com.xie.common.result.Result;
 import com.xie.common.util.RandomUtils;
 import com.xie.common.util.RegexValidateUtils;
 import com.xie.srb.sms.service.SmsService;
-import com.xie.srb.sms.util.SmsProperties;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -15,7 +14,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -45,14 +43,15 @@ public class ApiSmsController {
         //合法性 校验
         Assert.isTrue(RegexValidateUtils.checkCellphone(mobile),ResponseEnum.MOBILE_ERROR);
         String code=RandomUtils.getFourBitRandom();
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("code",code );
-        smsService.send(mobile, SmsProperties.TEMPLATE_CODE,map);
+//        HashMap<String, Object> map = new HashMap<>();
+//        map.put("code",code );
+//        smsService.send(mobile, SmsProperties.TEMPLATE_CODE,map);
 
+        log.info("验证码为：{}"+code);
         //验证码存入redis
         redisTemplate.opsForValue().set("srb:sms:code:"+mobile,code,1, TimeUnit.MINUTES);
 
-        return Result.ok().msg("短信发送成功");
+        return Result.ok().msg("短信发送成功").data("验证码：",code);
     }
 
 
