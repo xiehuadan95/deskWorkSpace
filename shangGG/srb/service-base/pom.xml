@@ -27,6 +27,12 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
         </dependency>
+<!-- swagger可以维护请求头 更强大的ui界面 地址是 doc.html-->
+        <!--<dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>swagger-bootstrap-ui</artifactId>
+            <version>1.9.2</version>
+        </dependency>-->
         <!--Spring boot redis缓存引入-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

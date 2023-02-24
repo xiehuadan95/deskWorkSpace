@@ -5,6 +5,7 @@ import com.xie.common.exception.Assert;
 import com.xie.common.result.ResponseEnum;
 import com.xie.common.result.Result;
 import com.xie.common.util.RegexValidateUtils;
+import com.xie.srb.base.util.JwtUtils;
 import com.xie.srb.core.pojo.vo.LoginVO;
 import com.xie.srb.core.pojo.vo.RegisterVO;
 import com.xie.srb.core.pojo.vo.UserInfoVO;
@@ -76,6 +77,19 @@ public class UserInfoController {
         String ip =request.getRemoteAddr();
         UserInfoVO userInfoVO = userInfoService.login(loginVO,ip);
         return Result.ok().data("userInfo",userInfoVO);
+    }
+    //token放在请求头中 过来
+    @ApiOperation("校验令牌")
+    @GetMapping("/checkToken")
+    public Result checkToken(HttpServletRequest request){
+
+        String token = request.getHeader("token");
+        boolean res = JwtUtils.checkToken(token);
+        if(res){
+            return Result.ok();
+        }else {
+            return Result.setResult(ResponseEnum.LOGIN_LOKED_ERROR);
+        }
     }
 
 }
