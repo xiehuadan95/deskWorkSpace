@@ -1,6 +1,8 @@
 package com.xie.srb.core.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xie.common.exception.Assert;
 import com.xie.common.result.ResponseEnum;
@@ -12,10 +14,12 @@ import com.xie.srb.core.mapper.UserLoginRecordMapper;
 import com.xie.srb.core.pojo.entity.UserAccount;
 import com.xie.srb.core.pojo.entity.UserInfo;
 import com.xie.srb.core.pojo.entity.UserLoginRecord;
+import com.xie.srb.core.pojo.query.UserInfoQuery;
 import com.xie.srb.core.pojo.vo.LoginVO;
 import com.xie.srb.core.pojo.vo.RegisterVO;
 import com.xie.srb.core.pojo.vo.UserInfoVO;
 import com.xie.srb.core.service.UserInfoService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -102,5 +106,22 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 
         //返回
         return userInfoVO;
+    }
+
+    @Override
+    public IPage<UserInfo> listPage(Page<UserInfo> pageParam, UserInfoQuery userInfoQuery) {
+        if (null == userInfoQuery) {
+            baseMapper.selectPage(pageParam, null);
+        }
+        String mobile = userInfoQuery.getMobile();
+        Integer status = userInfoQuery.getStatus();
+        Integer userType = userInfoQuery.getUserType();
+        QueryWrapper<UserInfo> userInfoQueryWrapper = new QueryWrapper<>();
+        //key要与数据库列名一致 组装查询条件
+        userInfoQueryWrapper.eq(StringUtils.isNotBlank(mobile), "mobile", mobile)
+                .eq(null != status, "status", status)
+                .eq(null != userType, "user_type", userType);
+
+        return baseMapper.selectPage(pageParam, userInfoQueryWrapper);
     }
 }
