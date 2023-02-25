@@ -26,5 +26,8 @@ public interface UserInfoService extends IService<UserInfo> {
     //根据查询条件和分页条件 展示分页列表
     IPage<UserInfo> listPage(Page<UserInfo> pageParam, UserInfoQuery userInfoQuery);
 
+    //根据传入的id 状态 对用户进行锁定或者解锁操作
+    void lock(Long id,Integer status);
+
 
 }
