@@ -70,14 +70,14 @@
 
 
     <!--日志记录器 管理整个com.xie包下的日志 -->
-<!--        <logger name="com.xie" level="INFO">-->
-    <!--        &lt;!&ndash; 引用 日志记录的目标位置 往两个地方输出位置&ndash;&gt;-->
-<!--            <appender-ref ref="CONSOLE"/>-->
-<!--            <appender-ref ref="FILE"/>-->
-<!--        </logger>-->
+        <logger name="com.xie" level="INFO">
+            <!-- 引用 日志记录的目标位置 往两个地方输出位置-->
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="FILE"/>
+        </logger>
     <!--  多环境配置 生产 测试 环境名字与yml配置文件中的一致-->
     <springProfile name="dev,test">
-        <logger name="com.xie" level="INFO">
+        <logger name="com.xie" level="DEBUG">
             <appender-ref ref="CONSOLE"/>
             <appender-ref ref="ROLLING_FILE"/>
 <!--            <appender-ref ref="rms"/>-->

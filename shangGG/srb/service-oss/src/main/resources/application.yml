@@ -7,6 +7,11 @@ spring:
   application:
     name: service-oss
 
+  #微服务注册 服务配置信息 nacos服务地址
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
 aliyun:
   oss:
     endpoint: oss-cn-beijing.aliyuncs.com

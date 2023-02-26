@@ -21,6 +21,19 @@ spring:
         max-idle: 8      #最大空闲连接，默认8
         min-idle: 0      #最小空闲连接，默认0
 
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+#feign 消费者调用配置 超时时间
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 10000 #连接超时配置
+        readTimeout: 600000   #执行超时配置
+
 #阿里云短信  id 及以下根据实际自己的来  自定义配置
 aliyun:
   sms:
@@ -29,3 +42,12 @@ aliyun:
     key-secret: N7v6R4V3EJ1SGDZlsqtqo8QyVVMmtQ
     template-code: SMS_96695065
     sign-name: 谷粒
+# 这个远程调用的接口的日志级别定义为DEBUG
+logging:
+  level:
+    com:
+      xie:
+        srb:
+          sms:
+            client:
+              CoreUserInfoClent: DEBUG
