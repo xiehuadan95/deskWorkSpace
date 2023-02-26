@@ -53,6 +53,9 @@ public class ApiSmsController {
         log.info("手机号是否已存在 res="+res);
         Assert.isTrue(res==false,ResponseEnum.MOBILE_EXIST_ERROR);
 
+        //如果service-core服务宕掉了 就干脆不断言了 先把验证码发过去 避免了远程调用失败，做一个熔断处理
+        //相当于应用功能降级了 不检测
+
         String code=RandomUtils.getFourBitRandom();
 //        HashMap<String, Object> map = new HashMap<>();
 //        map.put("code",code );
