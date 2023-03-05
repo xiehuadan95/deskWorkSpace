@@ -28,7 +28,7 @@ public class UserBindServiceImpl extends ServiceImpl<UserBindMapper, UserBind> i
     public String commitBindUser(UserBindVO userBindVO, Long userId) {
 
         Map<String ,Object > paramMap=new HashMap<>();
-        paramMap.put("agentId",HfbConst.AGENT_ID);
+        paramMap.put("agentId", HfbConst.AGENT_ID);
         paramMap.put("agentUserId",userId);
         paramMap.put("idCard",userBindVO.getIdCard());
         paramMap.put("personalName", userBindVO.getName());
