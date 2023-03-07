@@ -15,10 +15,10 @@ spring:
 
 # redis放在spring节点下
   redis:
-    host: 192.168.100.100
+    host: 127.0.0.1
     port: 6379
-    database: 0
-    password: 123456
+    database: 1
+#    password: root
     timeout: 3000ms
     lettuce:
       pool:
