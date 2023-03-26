@@ -5,6 +5,8 @@ import com.xie.common.result.ResponseEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 
+import java.util.Base64;
+
 /**
  * 自己写的断言
  *
@@ -19,6 +21,7 @@ public class Assert {
     public static  void notNull(Object obj,ResponseEnum responseEnum){
         if(obj==null){
             log.info("obj is null...........");
+
             throw new BusinessException(responseEnum);
         }
     }
