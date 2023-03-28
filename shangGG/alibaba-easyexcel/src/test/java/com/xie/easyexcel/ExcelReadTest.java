@@ -18,7 +18,7 @@ public class ExcelReadTest {
         String fileName = "D:/WorkSpace/excel20220403/simpleWrite1649000719043.xlsx";
         // 这里 需要指定读用哪个class去读，然后读取第一个sheet 文件流会自动关闭
         // 这里每次会读取3000条数据 然后返回过来 直接调用使用数据就行
-        EasyExcel.read(fileName, ExcelStudentDTO.class, new ExcelStudentDtoListener()).sheet().doRead();
+        EasyExcel.read(fileName, ExcelStudentDTO.class, new ExcelStudentDtoListener()).sheet("模板").doRead();
     }
     //如果读取的是xls版本文件，需要在sheet()方法之前加上excelType()版本号跟写一样
     /**

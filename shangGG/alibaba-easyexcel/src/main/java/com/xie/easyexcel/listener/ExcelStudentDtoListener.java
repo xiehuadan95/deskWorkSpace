@@ -2,6 +2,7 @@ package com.xie.easyexcel.listener;
 
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
+import com.alibaba.excel.read.metadata.holder.ReadSheetHolder;
 import com.xie.easyexcel.dto.ExcelStudentDTO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,5 +22,8 @@ public class ExcelStudentDtoListener extends AnalysisEventListener<ExcelStudentD
     @Override
     public void doAfterAllAnalysed(AnalysisContext context) {
         log.info("所有数据解析完成！");
+        ReadSheetHolder readSheetHolder = context.readSheetHolder();
+        System.out.println(readSheetHolder.getReadSheet());
+
     }
 }
